@@ -10,7 +10,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 116,
    "id": "644ddcaf",
    "metadata": {},
    "outputs": [],
@@ -41,7 +41,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
+   "execution_count": 117,
    "id": "e33e4d4b",
    "metadata": {},
    "outputs": [],
@@ -51,7 +51,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 118,
    "id": "7ca74ed8",
    "metadata": {},
    "outputs": [
@@ -329,7 +329,7 @@
        "[20001 rows x 13 columns]"
       ]
      },
-     "execution_count": 10,
+     "execution_count": 118,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -340,7 +340,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 119,
    "id": "59d7b212",
    "metadata": {},
    "outputs": [
@@ -488,7 +488,7 @@
        "4     1198.46          381.1                    36145  "
       ]
      },
-     "execution_count": 11,
+     "execution_count": 119,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -504,7 +504,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
+   "execution_count": 120,
    "id": "e15aaa57",
    "metadata": {},
    "outputs": [
@@ -652,7 +652,7 @@
        "5     1765.3        709.48                   42226  "
       ]
      },
-     "execution_count": 12,
+     "execution_count": 120,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -666,7 +666,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": 217,
    "id": "30182fd5",
    "metadata": {},
    "outputs": [
@@ -704,6 +704,10 @@
        "      <th>list_price</th>\n",
        "      <th>standard_cost</th>\n",
        "      <th>product_first_sold_date</th>\n",
+       "      <th>transaction_month</th>\n",
+       "      <th>cohort_month</th>\n",
+       "      <th>CohortIndex</th>\n",
+       "      <th>cohort_index</th>\n",
        "    </tr>\n",
        "  </thead>\n",
        "  <tbody>\n",
@@ -712,7 +716,7 @@
        "      <td>1</td>\n",
        "      <td>2</td>\n",
        "      <td>2950</td>\n",
-       "      <td>2017-02-25 00:00:00</td>\n",
+       "      <td>2017-02-25</td>\n",
        "      <td>False</td>\n",
        "      <td>Approved</td>\n",
        "      <td>Solex</td>\n",
@@ -721,14 +725,18 @@
        "      <td>medium</td>\n",
        "      <td>71.49</td>\n",
        "      <td>53.62</td>\n",
-       "      <td>41245</td>\n",
+       "      <td>41245.0</td>\n",
+       "      <td>2017-02-01</td>\n",
+       "      <td>2017-02-01</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>2</th>\n",
        "      <td>2</td>\n",
        "      <td>3</td>\n",
        "      <td>3120</td>\n",
-       "      <td>2017-05-21 00:00:00</td>\n",
+       "      <td>2017-05-21</td>\n",
        "      <td>True</td>\n",
        "      <td>Approved</td>\n",
        "      <td>Trek Bicycles</td>\n",
@@ -737,14 +745,18 @@
        "      <td>large</td>\n",
        "      <td>2091.47</td>\n",
        "      <td>388.92</td>\n",
-       "      <td>41701</td>\n",
+       "      <td>41701.0</td>\n",
+       "      <td>2017-05-01</td>\n",
+       "      <td>2017-01-01</td>\n",
+       "      <td>5</td>\n",
+       "      <td>5</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>3</th>\n",
        "      <td>3</td>\n",
        "      <td>37</td>\n",
        "      <td>402</td>\n",
-       "      <td>2017-10-16 00:00:00</td>\n",
+       "      <td>2017-10-16</td>\n",
        "      <td>False</td>\n",
        "      <td>Approved</td>\n",
        "      <td>OHM Cycles</td>\n",
@@ -753,14 +765,18 @@
        "      <td>medium</td>\n",
        "      <td>1793.43</td>\n",
        "      <td>248.82</td>\n",
-       "      <td>36361</td>\n",
+       "      <td>36361.0</td>\n",
+       "      <td>2017-10-01</td>\n",
+       "      <td>2017-01-01</td>\n",
+       "      <td>10</td>\n",
+       "      <td>10</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>4</th>\n",
        "      <td>4</td>\n",
        "      <td>88</td>\n",
        "      <td>3135</td>\n",
-       "      <td>2017-08-31 00:00:00</td>\n",
+       "      <td>2017-08-31</td>\n",
        "      <td>False</td>\n",
        "      <td>Approved</td>\n",
        "      <td>Norco Bicycles</td>\n",
@@ -768,27 +784,39 @@
        "      <td>medium</td>\n",
        "      <td>medium</td>\n",
        "      <td>1198.46</td>\n",
-       "      <td>381.1</td>\n",
-       "      <td>36145</td>\n",
+       "      <td>381.10</td>\n",
+       "      <td>36145.0</td>\n",
+       "      <td>2017-08-01</td>\n",
+       "      <td>2017-02-01</td>\n",
+       "      <td>7</td>\n",
+       "      <td>7</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>5</th>\n",
        "      <td>5</td>\n",
        "      <td>78</td>\n",
        "      <td>787</td>\n",
-       "      <td>2017-10-01 00:00:00</td>\n",
+       "      <td>2017-10-01</td>\n",
        "      <td>True</td>\n",
        "      <td>Approved</td>\n",
        "      <td>Giant Bicycles</td>\n",
        "      <td>Standard</td>\n",
        "      <td>medium</td>\n",
        "      <td>large</td>\n",
-       "      <td>1765.3</td>\n",
+       "      <td>1765.30</td>\n",
        "      <td>709.48</td>\n",
-       "      <td>42226</td>\n",
+       "      <td>42226.0</td>\n",
+       "      <td>2017-10-01</td>\n",
+       "      <td>2017-01-01</td>\n",
+       "      <td>10</td>\n",
+       "      <td>10</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
@@ -808,7 +836,7 @@
        "      <td>19996</td>\n",
        "      <td>51</td>\n",
        "      <td>1018</td>\n",
-       "      <td>2017-06-24 00:00:00</td>\n",
+       "      <td>2017-06-24</td>\n",
        "      <td>True</td>\n",
        "      <td>Approved</td>\n",
        "      <td>OHM Cycles</td>\n",
@@ -816,15 +844,19 @@
        "      <td>high</td>\n",
        "      <td>medium</td>\n",
        "      <td>2005.66</td>\n",
-       "      <td>1203.4</td>\n",
-       "      <td>37823</td>\n",
+       "      <td>1203.40</td>\n",
+       "      <td>37823.0</td>\n",
+       "      <td>2017-06-01</td>\n",
+       "      <td>2017-01-01</td>\n",
+       "      <td>6</td>\n",
+       "      <td>6</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>19997</th>\n",
        "      <td>19997</td>\n",
        "      <td>41</td>\n",
        "      <td>127</td>\n",
-       "      <td>2017-11-09 00:00:00</td>\n",
+       "      <td>2017-11-09</td>\n",
        "      <td>True</td>\n",
        "      <td>Approved</td>\n",
        "      <td>Solex</td>\n",
@@ -833,30 +865,38 @@
        "      <td>medium</td>\n",
        "      <td>416.98</td>\n",
        "      <td>312.74</td>\n",
-       "      <td>35560</td>\n",
+       "      <td>35560.0</td>\n",
+       "      <td>2017-11-01</td>\n",
+       "      <td>2017-01-01</td>\n",
+       "      <td>11</td>\n",
+       "      <td>11</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>19998</th>\n",
        "      <td>19998</td>\n",
        "      <td>87</td>\n",
        "      <td>2284</td>\n",
-       "      <td>2017-04-14 00:00:00</td>\n",
+       "      <td>2017-04-14</td>\n",
        "      <td>True</td>\n",
        "      <td>Approved</td>\n",
        "      <td>OHM Cycles</td>\n",
        "      <td>Standard</td>\n",
        "      <td>medium</td>\n",
        "      <td>medium</td>\n",
-       "      <td>1636.9</td>\n",
+       "      <td>1636.90</td>\n",
        "      <td>44.71</td>\n",
-       "      <td>40410</td>\n",
+       "      <td>40410.0</td>\n",
+       "      <td>2017-04-01</td>\n",
+       "      <td>2017-04-01</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>19999</th>\n",
        "      <td>19999</td>\n",
        "      <td>6</td>\n",
        "      <td>2764</td>\n",
-       "      <td>2017-07-03 00:00:00</td>\n",
+       "      <td>2017-07-03</td>\n",
        "      <td>False</td>\n",
        "      <td>Approved</td>\n",
        "      <td>OHM Cycles</td>\n",
@@ -865,14 +905,18 @@
        "      <td>medium</td>\n",
        "      <td>227.88</td>\n",
        "      <td>136.73</td>\n",
-       "      <td>38216</td>\n",
+       "      <td>38216.0</td>\n",
+       "      <td>2017-07-01</td>\n",
+       "      <td>2017-02-01</td>\n",
+       "      <td>6</td>\n",
+       "      <td>6</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>20000</th>\n",
        "      <td>20000</td>\n",
        "      <td>11</td>\n",
        "      <td>1144</td>\n",
-       "      <td>2017-09-22 00:00:00</td>\n",
+       "      <td>2017-09-22</td>\n",
        "      <td>True</td>\n",
        "      <td>Approved</td>\n",
        "      <td>Trek Bicycles</td>\n",
@@ -881,26 +925,30 @@
        "      <td>small</td>\n",
        "      <td>1775.81</td>\n",
        "      <td>1580.47</td>\n",
-       "      <td>36334</td>\n",
+       "      <td>36334.0</td>\n",
+       "      <td>2017-09-01</td>\n",
+       "      <td>2017-03-01</td>\n",
+       "      <td>7</td>\n",
+       "      <td>7</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
-       "<p>20000 rows × 13 columns</p>\n",
+       "<p>20000 rows × 17 columns</p>\n",
        "</div>"
       ],
       "text/plain": [
-       "0     transaction_id product_id customer_id     transaction_date online_order  \\\n",
-       "1                  1          2        2950  2017-02-25 00:00:00        False   \n",
-       "2                  2          3        3120  2017-05-21 00:00:00         True   \n",
-       "3                  3         37         402  2017-10-16 00:00:00        False   \n",
-       "4                  4         88        3135  2017-08-31 00:00:00        False   \n",
-       "5                  5         78         787  2017-10-01 00:00:00         True   \n",
-       "...              ...        ...         ...                  ...          ...   \n",
-       "19996          19996         51        1018  2017-06-24 00:00:00         True   \n",
-       "19997          19997         41         127  2017-11-09 00:00:00         True   \n",
-       "19998          19998         87        2284  2017-04-14 00:00:00         True   \n",
-       "19999          19999          6        2764  2017-07-03 00:00:00        False   \n",
-       "20000          20000         11        1144  2017-09-22 00:00:00         True   \n",
+       "0      transaction_id  product_id  customer_id transaction_date online_order  \\\n",
+       "1                   1           2         2950       2017-02-25        False   \n",
+       "2                   2           3         3120       2017-05-21         True   \n",
+       "3                   3          37          402       2017-10-16        False   \n",
+       "4                   4          88         3135       2017-08-31        False   \n",
+       "5                   5          78          787       2017-10-01         True   \n",
+       "...               ...         ...          ...              ...          ...   \n",
+       "19996           19996          51         1018       2017-06-24         True   \n",
+       "19997           19997          41          127       2017-11-09         True   \n",
+       "19998           19998          87         2284       2017-04-14         True   \n",
+       "19999           19999           6         2764       2017-07-03        False   \n",
+       "20000           20000          11         1144       2017-09-22         True   \n",
        "\n",
        "0     order_status           brand product_line product_class product_size  \\\n",
        "1         Approved           Solex     Standard        medium       medium   \n",
@@ -915,23 +963,36 @@
        "19999     Approved      OHM Cycles     Standard          high       medium   \n",
        "20000     Approved   Trek Bicycles     Standard        medium        small   \n",
        "\n",
-       "0     list_price standard_cost product_first_sold_date  \n",
-       "1          71.49         53.62                   41245  \n",
-       "2        2091.47        388.92                   41701  \n",
-       "3        1793.43        248.82                   36361  \n",
-       "4        1198.46         381.1                   36145  \n",
-       "5         1765.3        709.48                   42226  \n",
-       "...          ...           ...                     ...  \n",
-       "19996    2005.66        1203.4                   37823  \n",
-       "19997     416.98        312.74                   35560  \n",
-       "19998     1636.9         44.71                   40410  \n",
-       "19999     227.88        136.73                   38216  \n",
-       "20000    1775.81       1580.47                   36334  \n",
+       "0      list_price  standard_cost  product_first_sold_date transaction_month  \\\n",
+       "1           71.49          53.62                  41245.0        2017-02-01   \n",
+       "2         2091.47         388.92                  41701.0        2017-05-01   \n",
+       "3         1793.43         248.82                  36361.0        2017-10-01   \n",
+       "4         1198.46         381.10                  36145.0        2017-08-01   \n",
+       "5         1765.30         709.48                  42226.0        2017-10-01   \n",
+       "...           ...            ...                      ...               ...   \n",
+       "19996     2005.66        1203.40                  37823.0        2017-06-01   \n",
+       "19997      416.98         312.74                  35560.0        2017-11-01   \n",
+       "19998     1636.90          44.71                  40410.0        2017-04-01   \n",
+       "19999      227.88         136.73                  38216.0        2017-07-01   \n",
+       "20000     1775.81        1580.47                  36334.0        2017-09-01   \n",
        "\n",
-       "[20000 rows x 13 columns]"
+       "0     cohort_month  CohortIndex  cohort_index  \n",
+       "1       2017-02-01            1             1  \n",
+       "2       2017-01-01            5             5  \n",
+       "3       2017-01-01           10            10  \n",
+       "4       2017-02-01            7             7  \n",
+       "5       2017-01-01           10            10  \n",
+       "...            ...          ...           ...  \n",
+       "19996   2017-01-01            6             6  \n",
+       "19997   2017-01-01           11            11  \n",
+       "19998   2017-04-01            1             1  \n",
+       "19999   2017-02-01            6             6  \n",
+       "20000   2017-03-01            7             7  \n",
+       "\n",
+       "[20000 rows x 17 columns]"
       ]
      },
-     "execution_count": 13,
+     "execution_count": 217,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -939,12 +1000,15 @@
    "source": [
     "transcation_df = transaction_df.reset_index() \n",
     "transaction_df\n",
-    "\n"
+    "\n",
+    "#想把 index 重新从 0 开始，才好和 demographic_df join，但是 reset_index() 后还是 1 开头为 1st row?\n",
+    "\n",
+    "#直接用任何一个共有的 column 去 join 两个 table, 就不用管 index， 直接可以用 id 来 join."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
+   "execution_count": 122,
    "id": "6ec6fa1a",
    "metadata": {},
    "outputs": [
@@ -981,7 +1045,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
+   "execution_count": 123,
    "id": "7b6e1ac1",
    "metadata": {},
    "outputs": [
@@ -1110,7 +1174,7 @@
        "freq          12990      465.00         465.00                      234  "
       ]
      },
-     "execution_count": 15,
+     "execution_count": 123,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1121,7 +1185,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
+   "execution_count": 124,
    "id": "5c8ed96f",
    "metadata": {},
    "outputs": [],
@@ -1130,12 +1194,13 @@
     "\n",
     "#transaction_df.drop(index=transaction_df.index[0], axis=0, inplace=True)\n",
     "#transaction_df\n",
-    "\n"
+    "\n",
+    "#请问这个做法和直接.drop(0) 有什么差别？"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": 125,
    "id": "8d492361",
    "metadata": {},
    "outputs": [],
@@ -1144,7 +1209,12 @@
     "\n",
     "#transaction_df.drop(['transaction_id', 'product_id'], axis=1, inplace=True)\n",
     "#transaction_df\n",
-    "\n"
+    "\n",
+    "#inplace 就是替代掉原来的 data frame.\n",
+    "\n",
+    "#如果是 drop column, 一般是需要直接写出 column 名称吗？ 有没有可以比如说 drop column 1到 4 这样的做法？\n",
+    "\n",
+    "#transaction_df.drop(['transaction_id':'brand'], axis=1, inplace=True)"
    ]
   },
   {
@@ -1157,7 +1227,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": 126,
    "id": "4f599049",
    "metadata": {
     "scrolled": true
@@ -1167,7 +1237,7 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "/var/folders/hk/t9ycjb713h1fd831zgqd1zz40000gn/T/ipykernel_2761/1141691644.py:1: FutureWarning: Inferring datetime64[ns] from data containing strings is deprecated and will be removed in a future version. To retain the old behavior explicitly pass Series(data, dtype=datetime64[ns])\n",
+      "/var/folders/hk/t9ycjb713h1fd831zgqd1zz40000gn/T/ipykernel_5833/1141691644.py:1: FutureWarning: Inferring datetime64[ns] from data containing strings is deprecated and will be removed in a future version. To retain the old behavior explicitly pass Series(data, dtype=datetime64[ns])\n",
       "  demographic_df = pd.read_excel('KPMG_VI_New_raw_data_update_final.xlsx','CustomerDemographic')\n"
      ]
     }
@@ -1178,7 +1248,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
+   "execution_count": 131,
    "id": "22c763e3",
    "metadata": {},
    "outputs": [
@@ -1219,79 +1289,79 @@
        "  </thead>\n",
        "  <tbody>\n",
        "    <tr>\n",
-       "      <th>0</th>\n",
-       "      <td>34</td>\n",
-       "      <td>Jephthah Bachmann</td>\n",
-       "      <td>U</td>\n",
-       "      <td>59</td>\n",
-       "      <td>1843-12-21</td>\n",
-       "      <td>NaN</td>\n",
-       "      <td>Legal Assistant</td>\n",
-       "      <td>IT</td>\n",
+       "      <th>88</th>\n",
+       "      <td>720</td>\n",
+       "      <td>Darrel Canet</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>67</td>\n",
+       "      <td>1931-10-23</td>\n",
+       "      <td>88.0</td>\n",
+       "      <td>Recruiting Manager</td>\n",
+       "      <td>Retail</td>\n",
        "      <td>Affluent Customer</td>\n",
        "      <td>N</td>\n",
        "      <td>No</td>\n",
-       "      <td>20.0</td>\n",
+       "      <td>6.0</td>\n",
        "    </tr>\n",
        "    <tr>\n",
-       "      <th>1</th>\n",
-       "      <td>144</td>\n",
-       "      <td>Jory Barrabeale</td>\n",
-       "      <td>U</td>\n",
-       "      <td>71</td>\n",
-       "      <td>NaT</td>\n",
-       "      <td>120.0</td>\n",
-       "      <td>Environmental Tech</td>\n",
-       "      <td>IT</td>\n",
+       "      <th>89</th>\n",
+       "      <td>1092</td>\n",
+       "      <td>Katlin Creddon</td>\n",
+       "      <td>Female</td>\n",
+       "      <td>56</td>\n",
+       "      <td>1935-08-22</td>\n",
+       "      <td>84.0</td>\n",
+       "      <td>VP Quality Control</td>\n",
+       "      <td>Retail</td>\n",
        "      <td>Mass Customer</td>\n",
        "      <td>N</td>\n",
        "      <td>No</td>\n",
-       "      <td>NaN</td>\n",
+       "      <td>5.0</td>\n",
        "    </tr>\n",
        "    <tr>\n",
-       "      <th>2</th>\n",
-       "      <td>168</td>\n",
-       "      <td>Reggie Broggetti</td>\n",
-       "      <td>U</td>\n",
-       "      <td>8</td>\n",
-       "      <td>NaT</td>\n",
-       "      <td>120.0</td>\n",
-       "      <td>General Manager</td>\n",
-       "      <td>IT</td>\n",
+       "      <th>90</th>\n",
+       "      <td>3410</td>\n",
+       "      <td>Merrili Brittin</td>\n",
+       "      <td>Female</td>\n",
+       "      <td>93</td>\n",
+       "      <td>1940-09-22</td>\n",
+       "      <td>79.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Property</td>\n",
+       "      <td>Mass Customer</td>\n",
+       "      <td>N</td>\n",
+       "      <td>No</td>\n",
+       "      <td>16.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>91</th>\n",
+       "      <td>658</td>\n",
+       "      <td>Donn Bonnell</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>38</td>\n",
+       "      <td>1944-01-24</td>\n",
+       "      <td>76.0</td>\n",
+       "      <td>Tax Accountant</td>\n",
+       "      <td>Manufacturing</td>\n",
        "      <td>Affluent Customer</td>\n",
        "      <td>N</td>\n",
        "      <td>Yes</td>\n",
-       "      <td>NaN</td>\n",
+       "      <td>8.0</td>\n",
        "    </tr>\n",
        "    <tr>\n",
-       "      <th>3</th>\n",
-       "      <td>267</td>\n",
-       "      <td>Edgar Buckler</td>\n",
-       "      <td>U</td>\n",
-       "      <td>53</td>\n",
-       "      <td>NaT</td>\n",
-       "      <td>120.0</td>\n",
-       "      <td>NaN</td>\n",
-       "      <td>IT</td>\n",
+       "      <th>92</th>\n",
+       "      <td>2413</td>\n",
+       "      <td>Abbey Murrow</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>27</td>\n",
+       "      <td>1943-08-11</td>\n",
+       "      <td>76.0</td>\n",
+       "      <td>Environmental Specialist</td>\n",
+       "      <td>Manufacturing</td>\n",
        "      <td>High Net Worth</td>\n",
        "      <td>N</td>\n",
-       "      <td>No</td>\n",
-       "      <td>NaN</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>4</th>\n",
-       "      <td>290</td>\n",
-       "      <td>Giorgio Kevane</td>\n",
-       "      <td>U</td>\n",
-       "      <td>42</td>\n",
-       "      <td>NaT</td>\n",
-       "      <td>120.0</td>\n",
-       "      <td>Senior Sales Associate</td>\n",
-       "      <td>IT</td>\n",
-       "      <td>Mass Customer</td>\n",
-       "      <td>N</td>\n",
-       "      <td>No</td>\n",
-       "      <td>NaN</td>\n",
+       "      <td>Yes</td>\n",
+       "      <td>17.0</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>...</th>\n",
@@ -1385,16 +1455,16 @@
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
-       "<p>4000 rows × 12 columns</p>\n",
+       "<p>3912 rows × 12 columns</p>\n",
        "</div>"
       ],
       "text/plain": [
        "      customer_id               name  gender  \\\n",
-       "0              34  Jephthah Bachmann       U   \n",
-       "1             144    Jory Barrabeale       U   \n",
-       "2             168   Reggie Broggetti       U   \n",
-       "3             267      Edgar Buckler       U   \n",
-       "4             290     Giorgio Kevane       U   \n",
+       "88            720       Darrel Canet    Male   \n",
+       "89           1092     Katlin Creddon  Female   \n",
+       "90           3410    Merrili Brittin  Female   \n",
+       "91            658       Donn Bonnell    Male   \n",
+       "92           2413       Abbey Murrow    Male   \n",
        "...           ...                ...     ...   \n",
        "3995         2858    Benedicto Radki    Male   \n",
        "3996         3173            Angelo     Male   \n",
@@ -1402,25 +1472,25 @@
        "3998         3949  Costa Sleightholm    Male   \n",
        "3999         3997      Blanch Nisuis  Female   \n",
        "\n",
-       "      past_3_years_bike_related_purchases        DOB    age  \\\n",
-       "0                                      59 1843-12-21    NaN   \n",
-       "1                                      71        NaT  120.0   \n",
-       "2                                       8        NaT  120.0   \n",
-       "3                                      53        NaT  120.0   \n",
-       "4                                      42        NaT  120.0   \n",
-       "...                                   ...        ...    ...   \n",
-       "3995                                    4 2002-01-09   18.0   \n",
-       "3996                                   55 2001-10-10   18.0   \n",
-       "3997                                   80 2002-01-15   18.0   \n",
-       "3998                                   24 2001-12-19   18.0   \n",
-       "3999                                   87 2001-07-13   18.0   \n",
+       "      past_3_years_bike_related_purchases        DOB   age  \\\n",
+       "88                                     67 1931-10-23  88.0   \n",
+       "89                                     56 1935-08-22  84.0   \n",
+       "90                                     93 1940-09-22  79.0   \n",
+       "91                                     38 1944-01-24  76.0   \n",
+       "92                                     27 1943-08-11  76.0   \n",
+       "...                                   ...        ...   ...   \n",
+       "3995                                    4 2002-01-09  18.0   \n",
+       "3996                                   55 2001-10-10  18.0   \n",
+       "3997                                   80 2002-01-15  18.0   \n",
+       "3998                                   24 2001-12-19  18.0   \n",
+       "3999                                   87 2001-07-13  18.0   \n",
        "\n",
        "                       job_title job_industry_category     wealth_segment  \\\n",
-       "0                Legal Assistant                    IT  Affluent Customer   \n",
-       "1             Environmental Tech                    IT      Mass Customer   \n",
-       "2                General Manager                    IT  Affluent Customer   \n",
-       "3                            NaN                    IT     High Net Worth   \n",
-       "4         Senior Sales Associate                    IT      Mass Customer   \n",
+       "88            Recruiting Manager                Retail  Affluent Customer   \n",
+       "89            VP Quality Control                Retail      Mass Customer   \n",
+       "90                           NaN              Property      Mass Customer   \n",
+       "91                Tax Accountant         Manufacturing  Affluent Customer   \n",
+       "92      Environmental Specialist         Manufacturing     High Net Worth   \n",
        "...                          ...                   ...                ...   \n",
        "3995          Recruiting Manager                   NaN      Mass Customer   \n",
        "3996  Computer Systems Analyst I                Health      Mass Customer   \n",
@@ -1429,11 +1499,11 @@
        "3999             Statistician II         Manufacturing     High Net Worth   \n",
        "\n",
        "     deceased_indicator owns_car  tenure  \n",
-       "0                     N       No    20.0  \n",
-       "1                     N       No     NaN  \n",
-       "2                     N      Yes     NaN  \n",
-       "3                     N       No     NaN  \n",
-       "4                     N       No     NaN  \n",
+       "88                    N       No     6.0  \n",
+       "89                    N       No     5.0  \n",
+       "90                    N       No    16.0  \n",
+       "91                    N      Yes     8.0  \n",
+       "92                    N      Yes    17.0  \n",
        "...                 ...      ...     ...  \n",
        "3995                  N      Yes     1.0  \n",
        "3996                  N      Yes     1.0  \n",
@@ -1441,10 +1511,10 @@
        "3998                  N      Yes     1.0  \n",
        "3999                  N      Yes     1.0  \n",
        "\n",
-       "[4000 rows x 12 columns]"
+       "[3912 rows x 12 columns]"
       ]
      },
-     "execution_count": 19,
+     "execution_count": 131,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1455,7 +1525,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 20,
+   "execution_count": 132,
    "id": "ea58edf2",
    "metadata": {},
    "outputs": [
@@ -1464,24 +1534,24 @@
      "output_type": "stream",
      "text": [
       "<class 'pandas.core.frame.DataFrame'>\n",
-      "RangeIndex: 4000 entries, 0 to 3999\n",
+      "Int64Index: 3912 entries, 88 to 3999\n",
       "Data columns (total 12 columns):\n",
       " #   Column                               Non-Null Count  Dtype         \n",
       "---  ------                               --------------  -----         \n",
-      " 0   customer_id                          4000 non-null   int64         \n",
-      " 1   name                                 4000 non-null   object        \n",
-      " 2   gender                               4000 non-null   object        \n",
-      " 3   past_3_years_bike_related_purchases  4000 non-null   int64         \n",
-      " 4   DOB                                  3913 non-null   datetime64[ns]\n",
-      " 5   age                                  3999 non-null   float64       \n",
-      " 6   job_title                            3494 non-null   object        \n",
-      " 7   job_industry_category                3344 non-null   object        \n",
-      " 8   wealth_segment                       4000 non-null   object        \n",
-      " 9   deceased_indicator                   4000 non-null   object        \n",
-      " 10  owns_car                             4000 non-null   object        \n",
-      " 11  tenure                               3913 non-null   float64       \n",
+      " 0   customer_id                          3912 non-null   int64         \n",
+      " 1   name                                 3912 non-null   object        \n",
+      " 2   gender                               3912 non-null   object        \n",
+      " 3   past_3_years_bike_related_purchases  3912 non-null   int64         \n",
+      " 4   DOB                                  3912 non-null   datetime64[ns]\n",
+      " 5   age                                  3912 non-null   float64       \n",
+      " 6   job_title                            3415 non-null   object        \n",
+      " 7   job_industry_category                3256 non-null   object        \n",
+      " 8   wealth_segment                       3912 non-null   object        \n",
+      " 9   deceased_indicator                   3912 non-null   object        \n",
+      " 10  owns_car                             3912 non-null   object        \n",
+      " 11  tenure                               3912 non-null   float64       \n",
       "dtypes: datetime64[ns](1), float64(2), int64(2), object(7)\n",
-      "memory usage: 375.1+ KB\n"
+      "memory usage: 397.3+ KB\n"
      ]
     }
    ],
@@ -1491,7 +1561,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 21,
+   "execution_count": 133,
    "id": "397a09bc",
    "metadata": {},
    "outputs": [
@@ -1525,24 +1595,24 @@
        "  <tbody>\n",
        "    <tr>\n",
        "      <th>count</th>\n",
-       "      <td>4000.000000</td>\n",
-       "      <td>4000.000000</td>\n",
-       "      <td>3999.000000</td>\n",
-       "      <td>3913.000000</td>\n",
+       "      <td>3912.000000</td>\n",
+       "      <td>3912.000000</td>\n",
+       "      <td>3912.000000</td>\n",
+       "      <td>3912.000000</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>mean</th>\n",
-       "      <td>2000.500000</td>\n",
-       "      <td>48.890000</td>\n",
-       "      <td>44.054514</td>\n",
-       "      <td>10.657041</td>\n",
+       "      <td>1999.828221</td>\n",
+       "      <td>49.039366</td>\n",
+       "      <td>42.365542</td>\n",
+       "      <td>10.654652</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>std</th>\n",
-       "      <td>1154.844867</td>\n",
-       "      <td>28.715005</td>\n",
-       "      <td>16.858429</td>\n",
-       "      <td>5.660146</td>\n",
+       "      <td>1154.903377</td>\n",
+       "      <td>28.768226</td>\n",
+       "      <td>12.624297</td>\n",
+       "      <td>5.658898</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>min</th>\n",
@@ -1553,30 +1623,30 @@
        "    </tr>\n",
        "    <tr>\n",
        "      <th>25%</th>\n",
-       "      <td>1000.750000</td>\n",
+       "      <td>1002.750000</td>\n",
        "      <td>24.000000</td>\n",
        "      <td>33.000000</td>\n",
        "      <td>6.000000</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>50%</th>\n",
-       "      <td>2000.500000</td>\n",
+       "      <td>2000.000000</td>\n",
        "      <td>48.000000</td>\n",
-       "      <td>43.000000</td>\n",
+       "      <td>42.000000</td>\n",
        "      <td>11.000000</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>75%</th>\n",
-       "      <td>3000.250000</td>\n",
+       "      <td>2997.250000</td>\n",
        "      <td>73.000000</td>\n",
-       "      <td>53.000000</td>\n",
+       "      <td>52.000000</td>\n",
        "      <td>15.000000</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>max</th>\n",
        "      <td>4000.000000</td>\n",
        "      <td>99.000000</td>\n",
-       "      <td>120.000000</td>\n",
+       "      <td>88.000000</td>\n",
        "      <td>22.000000</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
@@ -1585,19 +1655,19 @@
       ],
       "text/plain": [
        "       customer_id  past_3_years_bike_related_purchases          age  \\\n",
-       "count  4000.000000                          4000.000000  3999.000000   \n",
-       "mean   2000.500000                            48.890000    44.054514   \n",
-       "std    1154.844867                            28.715005    16.858429   \n",
+       "count  3912.000000                          3912.000000  3912.000000   \n",
+       "mean   1999.828221                            49.039366    42.365542   \n",
+       "std    1154.903377                            28.768226    12.624297   \n",
        "min       1.000000                             0.000000    18.000000   \n",
-       "25%    1000.750000                            24.000000    33.000000   \n",
-       "50%    2000.500000                            48.000000    43.000000   \n",
-       "75%    3000.250000                            73.000000    53.000000   \n",
-       "max    4000.000000                            99.000000   120.000000   \n",
+       "25%    1002.750000                            24.000000    33.000000   \n",
+       "50%    2000.000000                            48.000000    42.000000   \n",
+       "75%    2997.250000                            73.000000    52.000000   \n",
+       "max    4000.000000                            99.000000    88.000000   \n",
        "\n",
        "            tenure  \n",
-       "count  3913.000000  \n",
-       "mean     10.657041  \n",
-       "std       5.660146  \n",
+       "count  3912.000000  \n",
+       "mean     10.654652  \n",
+       "std       5.658898  \n",
        "min       1.000000  \n",
        "25%       6.000000  \n",
        "50%      11.000000  \n",
@@ -1605,7 +1675,7 @@
        "max      22.000000  "
       ]
      },
-     "execution_count": 21,
+     "execution_count": 133,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1616,7 +1686,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 22,
+   "execution_count": 134,
    "id": "b2761c5e",
    "metadata": {},
    "outputs": [],
@@ -1628,7 +1698,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 23,
+   "execution_count": 135,
    "id": "b7f7ed54",
    "metadata": {
     "scrolled": true
@@ -1896,7 +1966,7 @@
        "[3912 rows x 12 columns]"
       ]
      },
-     "execution_count": 23,
+     "execution_count": 135,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1907,7 +1977,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 24,
+   "execution_count": 144,
    "id": "bc7f95dc",
    "metadata": {},
    "outputs": [
@@ -2173,7 +2243,7 @@
        "[3912 rows x 12 columns]"
       ]
      },
-     "execution_count": 24,
+     "execution_count": 144,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2202,7 +2272,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 25,
+   "execution_count": 136,
    "id": "4d24dbd7",
    "metadata": {},
    "outputs": [
@@ -2221,7 +2291,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 26,
+   "execution_count": 137,
    "id": "dac04566",
    "metadata": {},
    "outputs": [],
@@ -2232,7 +2302,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
+   "execution_count": 138,
    "id": "e42e1d91",
    "metadata": {},
    "outputs": [
@@ -2240,7 +2310,7 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "/var/folders/hk/t9ycjb713h1fd831zgqd1zz40000gn/T/ipykernel_2761/2918931933.py:2: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with 'numeric_only=None') is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.\n",
+      "/var/folders/hk/t9ycjb713h1fd831zgqd1zz40000gn/T/ipykernel_5833/4034010632.py:2: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with 'numeric_only=None') is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.\n",
       "  transaction_df = transaction_df.fillna(transaction_df.mean())\n"
      ]
     }
@@ -2252,7 +2322,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
+   "execution_count": 139,
    "id": "51d79bc1",
    "metadata": {},
    "outputs": [
@@ -2272,11 +2342,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 140,
    "id": "64adeb0c",
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "# 请问，从 1542 missing values 到还有 788 missing values的原因？ 为什么不是到 0 missing values? 是因为还有文字版本的 missing values 吗？"
+   ]
   },
   {
    "cell_type": "markdown",
@@ -2288,7 +2360,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 29,
+   "execution_count": 145,
    "id": "4a12da77",
    "metadata": {},
    "outputs": [
@@ -2307,7 +2379,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
+   "execution_count": 146,
    "id": "9e59d13b",
    "metadata": {},
    "outputs": [],
@@ -2318,7 +2390,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 31,
+   "execution_count": 147,
    "id": "71646b8c",
    "metadata": {},
    "outputs": [
@@ -2326,7 +2398,7 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "/var/folders/hk/t9ycjb713h1fd831zgqd1zz40000gn/T/ipykernel_2761/1179130404.py:2: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with 'numeric_only=None') is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.\n",
+      "/var/folders/hk/t9ycjb713h1fd831zgqd1zz40000gn/T/ipykernel_5833/1179130404.py:2: FutureWarning: Dropping of nuisance columns in DataFrame reductions (with 'numeric_only=None') is deprecated; in a future version this will raise TypeError.  Select only valid columns before calling the reduction.\n",
       "  demographic_df = transaction_df.fillna(transaction_df.mean())\n"
      ]
     }
@@ -2338,7 +2410,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 32,
+   "execution_count": 148,
    "id": "7d4915c3",
    "metadata": {},
    "outputs": [
@@ -2366,7 +2438,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 33,
+   "execution_count": 151,
    "id": "91cdf85d",
    "metadata": {},
    "outputs": [
@@ -2408,11 +2480,13 @@
    "id": "fe05a006",
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "# 以上check info 显示的： 是不是这次再检查之后，剩下的还有 Null 的就都是 Categorical 的 missing values 了？"
+   ]
   },
   {
    "cell_type": "code",
-   "execution_count": 34,
+   "execution_count": 187,
    "id": "8eb27bd9",
    "metadata": {},
    "outputs": [
@@ -2422,7 +2496,7 @@
      "text": [
       "<class 'pandas.core.frame.DataFrame'>\n",
       "RangeIndex: 20000 entries, 1 to 20000\n",
-      "Data columns (total 13 columns):\n",
+      "Data columns (total 15 columns):\n",
       " #   Column                   Non-Null Count  Dtype         \n",
       "---  ------                   --------------  -----         \n",
       " 0   transaction_id           20000 non-null  int64         \n",
@@ -2438,8 +2512,10 @@
       " 10  list_price               20000 non-null  float64       \n",
       " 11  standard_cost            20000 non-null  float64       \n",
       " 12  product_first_sold_date  20000 non-null  float64       \n",
-      "dtypes: datetime64[ns](1), float64(3), int64(3), object(6)\n",
-      "memory usage: 2.0+ MB\n",
+      " 13  transaction_month        20000 non-null  datetime64[ns]\n",
+      " 14  cohort_month             20000 non-null  datetime64[ns]\n",
+      "dtypes: datetime64[ns](3), float64(3), int64(3), object(6)\n",
+      "memory usage: 2.3+ MB\n",
       "None\n",
       "0\n"
      ]
@@ -2471,7 +2547,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 35,
+   "execution_count": 188,
    "id": "be13bf13",
    "metadata": {},
    "outputs": [
@@ -2482,22 +2558,22 @@
       "<class 'pandas.core.frame.DataFrame'>\n",
       "RangeIndex: 20000 entries, 1 to 20000\n",
       "Data columns (total 13 columns):\n",
-      " #   Column                   Non-Null Count  Dtype  \n",
-      "---  ------                   --------------  -----  \n",
-      " 0   transaction_id           20000 non-null  int64  \n",
-      " 1   product_id               20000 non-null  int64  \n",
-      " 2   customer_id              20000 non-null  int64  \n",
-      " 3   transaction_date         20000 non-null  object \n",
-      " 4   online_order             20000 non-null  object \n",
-      " 5   order_status             20000 non-null  object \n",
-      " 6   brand                    19803 non-null  object \n",
-      " 7   product_line             19803 non-null  object \n",
-      " 8   product_class            19803 non-null  object \n",
-      " 9   product_size             19803 non-null  object \n",
-      " 10  list_price               20000 non-null  float64\n",
-      " 11  standard_cost            20000 non-null  float64\n",
-      " 12  product_first_sold_date  20000 non-null  float64\n",
-      "dtypes: float64(3), int64(3), object(7)\n",
+      " #   Column                   Non-Null Count  Dtype         \n",
+      "---  ------                   --------------  -----         \n",
+      " 0   transaction_id           20000 non-null  int64         \n",
+      " 1   product_id               20000 non-null  int64         \n",
+      " 2   customer_id              20000 non-null  int64         \n",
+      " 3   transaction_date         20000 non-null  datetime64[ns]\n",
+      " 4   online_order             20000 non-null  object        \n",
+      " 5   order_status             20000 non-null  object        \n",
+      " 6   brand                    20000 non-null  object        \n",
+      " 7   product_line             20000 non-null  object        \n",
+      " 8   product_class            20000 non-null  object        \n",
+      " 9   product_size             20000 non-null  object        \n",
+      " 10  list_price               20000 non-null  float64       \n",
+      " 11  standard_cost            20000 non-null  float64       \n",
+      " 12  product_first_sold_date  20000 non-null  float64       \n",
+      "dtypes: datetime64[ns](1), float64(3), int64(3), object(6)\n",
       "memory usage: 2.0+ MB\n",
       "None\n"
      ]
@@ -2509,7 +2585,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 36,
+   "execution_count": 189,
    "id": "1b9ac96d",
    "metadata": {},
    "outputs": [
@@ -2584,7 +2660,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 37,
+   "execution_count": 190,
    "id": "e6ef1fdc",
    "metadata": {},
    "outputs": [
@@ -2594,7 +2670,7 @@
        "Timestamp('2017-02-25 00:00:00')"
       ]
      },
-     "execution_count": 37,
+     "execution_count": 190,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2606,7 +2682,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 38,
+   "execution_count": 191,
    "id": "8abfcb14",
    "metadata": {},
    "outputs": [
@@ -2616,7 +2692,7 @@
        "datetime.datetime(2017, 2, 1, 0, 0)"
       ]
      },
-     "execution_count": 38,
+     "execution_count": 191,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2631,7 +2707,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 39,
+   "execution_count": 192,
    "id": "cdead960",
    "metadata": {},
    "outputs": [],
@@ -2643,11 +2719,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 193,
    "id": "bb7060c5",
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "#以上 function 里的 get(x) 的 x是代表什么？\n",
+    "#用这个function 的时候，x 会是一个 colomn name"
+   ]
   },
   {
    "cell_type": "code",
@@ -2659,7 +2738,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 40,
+   "execution_count": 194,
    "id": "b708548d",
    "metadata": {},
    "outputs": [
@@ -2698,6 +2777,7 @@
        "      <th>standard_cost</th>\n",
        "      <th>product_first_sold_date</th>\n",
        "      <th>transaction_month</th>\n",
+       "      <th>cohort_month</th>\n",
        "    </tr>\n",
        "  </thead>\n",
        "  <tbody>\n",
@@ -2717,6 +2797,7 @@
        "      <td>53.62</td>\n",
        "      <td>41245.0</td>\n",
        "      <td>2017-02-01</td>\n",
+       "      <td>2017-02-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>2</th>\n",
@@ -2734,6 +2815,7 @@
        "      <td>388.92</td>\n",
        "      <td>41701.0</td>\n",
        "      <td>2017-05-01</td>\n",
+       "      <td>2017-01-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>3</th>\n",
@@ -2751,6 +2833,7 @@
        "      <td>248.82</td>\n",
        "      <td>36361.0</td>\n",
        "      <td>2017-10-01</td>\n",
+       "      <td>2017-01-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>4</th>\n",
@@ -2768,6 +2851,7 @@
        "      <td>381.10</td>\n",
        "      <td>36145.0</td>\n",
        "      <td>2017-08-01</td>\n",
+       "      <td>2017-02-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>5</th>\n",
@@ -2785,9 +2869,11 @@
        "      <td>709.48</td>\n",
        "      <td>42226.0</td>\n",
        "      <td>2017-10-01</td>\n",
+       "      <td>2017-01-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>...</th>\n",
+       "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
@@ -2819,6 +2905,7 @@
        "      <td>1203.40</td>\n",
        "      <td>37823.0</td>\n",
        "      <td>2017-06-01</td>\n",
+       "      <td>2017-01-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>19997</th>\n",
@@ -2836,6 +2923,7 @@
        "      <td>312.74</td>\n",
        "      <td>35560.0</td>\n",
        "      <td>2017-11-01</td>\n",
+       "      <td>2017-01-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>19998</th>\n",
@@ -2852,6 +2940,7 @@
        "      <td>1636.90</td>\n",
        "      <td>44.71</td>\n",
        "      <td>40410.0</td>\n",
+       "      <td>2017-04-01</td>\n",
        "      <td>2017-04-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -2870,6 +2959,7 @@
        "      <td>136.73</td>\n",
        "      <td>38216.0</td>\n",
        "      <td>2017-07-01</td>\n",
+       "      <td>2017-02-01</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>20000</th>\n",
@@ -2887,10 +2977,11 @@
        "      <td>1580.47</td>\n",
        "      <td>36334.0</td>\n",
        "      <td>2017-09-01</td>\n",
+       "      <td>2017-03-01</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
-       "<p>20000 rows × 14 columns</p>\n",
+       "<p>20000 rows × 15 columns</p>\n",
        "</div>"
       ],
       "text/plain": [
@@ -2920,23 +3011,36 @@
        "19999     Approved      OHM Cycles     Standard          high       medium   \n",
        "20000     Approved   Trek Bicycles     Standard        medium        small   \n",
        "\n",
-       "0      list_price  standard_cost  product_first_sold_date transaction_month  \n",
-       "1           71.49          53.62                  41245.0        2017-02-01  \n",
-       "2         2091.47         388.92                  41701.0        2017-05-01  \n",
-       "3         1793.43         248.82                  36361.0        2017-10-01  \n",
-       "4         1198.46         381.10                  36145.0        2017-08-01  \n",
-       "5         1765.30         709.48                  42226.0        2017-10-01  \n",
-       "...           ...            ...                      ...               ...  \n",
-       "19996     2005.66        1203.40                  37823.0        2017-06-01  \n",
-       "19997      416.98         312.74                  35560.0        2017-11-01  \n",
-       "19998     1636.90          44.71                  40410.0        2017-04-01  \n",
-       "19999      227.88         136.73                  38216.0        2017-07-01  \n",
-       "20000     1775.81        1580.47                  36334.0        2017-09-01  \n",
+       "0      list_price  standard_cost  product_first_sold_date transaction_month  \\\n",
+       "1           71.49          53.62                  41245.0        2017-02-01   \n",
+       "2         2091.47         388.92                  41701.0        2017-05-01   \n",
+       "3         1793.43         248.82                  36361.0        2017-10-01   \n",
+       "4         1198.46         381.10                  36145.0        2017-08-01   \n",
+       "5         1765.30         709.48                  42226.0        2017-10-01   \n",
+       "...           ...            ...                      ...               ...   \n",
+       "19996     2005.66        1203.40                  37823.0        2017-06-01   \n",
+       "19997      416.98         312.74                  35560.0        2017-11-01   \n",
+       "19998     1636.90          44.71                  40410.0        2017-04-01   \n",
+       "19999      227.88         136.73                  38216.0        2017-07-01   \n",
+       "20000     1775.81        1580.47                  36334.0        2017-09-01   \n",
        "\n",
-       "[20000 rows x 14 columns]"
+       "0     cohort_month  \n",
+       "1       2017-02-01  \n",
+       "2       2017-01-01  \n",
+       "3       2017-01-01  \n",
+       "4       2017-02-01  \n",
+       "5       2017-01-01  \n",
+       "...            ...  \n",
+       "19996   2017-01-01  \n",
+       "19997   2017-01-01  \n",
+       "19998   2017-04-01  \n",
+       "19999   2017-02-01  \n",
+       "20000   2017-03-01  \n",
+       "\n",
+       "[20000 rows x 15 columns]"
       ]
      },
-     "execution_count": 40,
+     "execution_count": 194,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2951,17 +3055,17 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 41,
+   "execution_count": 195,
    "id": "270f8a7b",
    "metadata": {},
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fa7f9ddfee0>"
+       "<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fb349e43c10>"
       ]
      },
-     "execution_count": 41,
+     "execution_count": 195,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2972,7 +3076,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 42,
+   "execution_count": 196,
    "id": "ed6c69e3",
    "metadata": {},
    "outputs": [
@@ -2993,7 +3097,7 @@
        "Name: transaction_month, Length: 20000, dtype: datetime64[ns]"
       ]
      },
-     "execution_count": 42,
+     "execution_count": 196,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3006,11 +3110,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 197,
    "id": "7f134571",
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "# 可以麻烦解释一下这个.transform('min') 里， transform 这个用法的意思？"
+   ]
   },
   {
    "cell_type": "code",
@@ -3022,17 +3128,17 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 43,
+   "execution_count": 198,
    "id": "f6a334bc",
    "metadata": {},
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "<pandas.core.groupby.generic.SeriesGroupBy object at 0x7fa7e86cb8e0>"
+       "<pandas.core.groupby.generic.SeriesGroupBy object at 0x7fb349e43880>"
       ]
      },
-     "execution_count": 43,
+     "execution_count": 198,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3045,15 +3151,17 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 199,
    "id": "9c77132a",
    "metadata": {},
    "outputs": [],
-   "source": []
+   "source": [
+    "# 请问这个 code 和上面那行有什么差别？"
+   ]
   },
   {
    "cell_type": "code",
-   "execution_count": 44,
+   "execution_count": null,
    "id": "94594cbb",
    "metadata": {},
    "outputs": [],
@@ -3079,7 +3187,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 45,
+   "execution_count": 200,
    "id": "0594ef94",
    "metadata": {},
    "outputs": [],
@@ -3090,7 +3198,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 46,
+   "execution_count": 201,
    "id": "6a6d5224",
    "metadata": {},
    "outputs": [
@@ -3257,7 +3365,7 @@
        "5   2017-01-01  "
       ]
      },
-     "execution_count": 46,
+     "execution_count": 201,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3281,12 +3389,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 47,
+   "execution_count": null,
    "id": "70147869",
    "metadata": {},
    "outputs": [],
    "source": [
+    "# get_date_int() 可以解释一下吗？\n",
     "\n",
+    "# example 范例里是写的如下： 不用吧 df 改成 transaction_df吗？\n",
     "\n",
     "#def get_date_int(df, column):\n",
     "    #year = df[column].dt.year\n",
@@ -3298,12 +3408,12 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 48,
+   "execution_count": 203,
    "id": "334fc89d",
    "metadata": {},
    "outputs": [],
    "source": [
-    "\n",
+    "#这个部分麻烦请解释一下：\n",
     "\n",
     "def get_date_int(transaction_df, column):\n",
     "    year = transaction_df[column].dt.year\n",
@@ -3337,7 +3447,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 49,
+   "execution_count": 213,
    "id": "1babce66",
    "metadata": {},
    "outputs": [],
@@ -3352,7 +3462,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 50,
+   "execution_count": 214,
    "id": "626de584",
    "metadata": {},
    "outputs": [
@@ -3392,6 +3502,7 @@
        "      <th>product_first_sold_date</th>\n",
        "      <th>transaction_month</th>\n",
        "      <th>cohort_month</th>\n",
+       "      <th>CohortIndex</th>\n",
        "      <th>cohort_index</th>\n",
        "    </tr>\n",
        "  </thead>\n",
@@ -3414,6 +3525,7 @@
        "      <td>2017-02-01</td>\n",
        "      <td>2017-02-01</td>\n",
        "      <td>1</td>\n",
+       "      <td>1</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>2</th>\n",
@@ -3432,6 +3544,7 @@
        "      <td>41701.0</td>\n",
        "      <td>2017-05-01</td>\n",
        "      <td>2017-01-01</td>\n",
+       "      <td>5</td>\n",
        "      <td>5</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3452,6 +3565,7 @@
        "      <td>2017-10-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>10</td>\n",
+       "      <td>10</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>4</th>\n",
@@ -3470,6 +3584,7 @@
        "      <td>36145.0</td>\n",
        "      <td>2017-08-01</td>\n",
        "      <td>2017-02-01</td>\n",
+       "      <td>7</td>\n",
        "      <td>7</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3490,9 +3605,11 @@
        "      <td>2017-10-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>10</td>\n",
+       "      <td>10</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>...</th>\n",
+       "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
@@ -3528,6 +3645,7 @@
        "      <td>2017-06-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>6</td>\n",
+       "      <td>6</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>19997</th>\n",
@@ -3546,6 +3664,7 @@
        "      <td>35560.0</td>\n",
        "      <td>2017-11-01</td>\n",
        "      <td>2017-01-01</td>\n",
+       "      <td>11</td>\n",
        "      <td>11</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3566,6 +3685,7 @@
        "      <td>2017-04-01</td>\n",
        "      <td>2017-04-01</td>\n",
        "      <td>1</td>\n",
+       "      <td>1</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>19999</th>\n",
@@ -3584,6 +3704,7 @@
        "      <td>38216.0</td>\n",
        "      <td>2017-07-01</td>\n",
        "      <td>2017-02-01</td>\n",
+       "      <td>6</td>\n",
        "      <td>6</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3604,10 +3725,11 @@
        "      <td>2017-09-01</td>\n",
        "      <td>2017-03-01</td>\n",
        "      <td>7</td>\n",
+       "      <td>7</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
-       "<p>20000 rows × 16 columns</p>\n",
+       "<p>20000 rows × 17 columns</p>\n",
        "</div>"
       ],
       "text/plain": [
@@ -3650,23 +3772,23 @@
        "19999      227.88         136.73                  38216.0        2017-07-01   \n",
        "20000     1775.81        1580.47                  36334.0        2017-09-01   \n",
        "\n",
-       "0     cohort_month  cohort_index  \n",
-       "1       2017-02-01             1  \n",
-       "2       2017-01-01             5  \n",
-       "3       2017-01-01            10  \n",
-       "4       2017-02-01             7  \n",
-       "5       2017-01-01            10  \n",
-       "...            ...           ...  \n",
-       "19996   2017-01-01             6  \n",
-       "19997   2017-01-01            11  \n",
-       "19998   2017-04-01             1  \n",
-       "19999   2017-02-01             6  \n",
-       "20000   2017-03-01             7  \n",
+       "0     cohort_month  CohortIndex  cohort_index  \n",
+       "1       2017-02-01            1             1  \n",
+       "2       2017-01-01            5             5  \n",
+       "3       2017-01-01           10            10  \n",
+       "4       2017-02-01            7             7  \n",
+       "5       2017-01-01           10            10  \n",
+       "...            ...          ...           ...  \n",
+       "19996   2017-01-01            6             6  \n",
+       "19997   2017-01-01           11            11  \n",
+       "19998   2017-04-01            1             1  \n",
+       "19999   2017-02-01            6             6  \n",
+       "20000   2017-03-01            7             7  \n",
        "\n",
-       "[20000 rows x 16 columns]"
+       "[20000 rows x 17 columns]"
       ]
      },
-     "execution_count": 50,
+     "execution_count": 214,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3688,11 +3810,9 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 51,
+   "execution_count": 215,
    "id": "61058aee",
-   "metadata": {
-    "scrolled": true
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -3730,6 +3850,7 @@
        "      <th>product_first_sold_date</th>\n",
        "      <th>transaction_month</th>\n",
        "      <th>cohort_month</th>\n",
+       "      <th>CohortIndex</th>\n",
        "      <th>cohort_index</th>\n",
        "    </tr>\n",
        "  </thead>\n",
@@ -3752,6 +3873,7 @@
        "      <td>2017-03-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>3</td>\n",
+       "      <td>3</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>18970</th>\n",
@@ -3770,6 +3892,7 @@
        "      <td>35378.0</td>\n",
        "      <td>2017-03-01</td>\n",
        "      <td>2017-01-01</td>\n",
+       "      <td>3</td>\n",
        "      <td>3</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3790,6 +3913,7 @@
        "      <td>2017-12-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>12</td>\n",
+       "      <td>12</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>5157</th>\n",
@@ -3808,6 +3932,7 @@
        "      <td>37823.0</td>\n",
        "      <td>2017-05-01</td>\n",
        "      <td>2017-01-01</td>\n",
+       "      <td>5</td>\n",
        "      <td>5</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3828,9 +3953,11 @@
        "      <td>2017-02-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>2</td>\n",
+       "      <td>2</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>...</th>\n",
+       "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
        "      <td>...</td>\n",
@@ -3866,6 +3993,7 @@
        "      <td>2017-04-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>4</td>\n",
+       "      <td>4</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>8416</th>\n",
@@ -3884,6 +4012,7 @@
        "      <td>36668.0</td>\n",
        "      <td>2017-02-01</td>\n",
        "      <td>2017-01-01</td>\n",
+       "      <td>2</td>\n",
        "      <td>2</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3904,6 +4033,7 @@
        "      <td>2017-10-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>10</td>\n",
+       "      <td>10</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>16701</th>\n",
@@ -3922,6 +4052,7 @@
        "      <td>35667.0</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>2017-01-01</td>\n",
+       "      <td>1</td>\n",
        "      <td>1</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -3942,10 +4073,11 @@
        "      <td>2017-01-01</td>\n",
        "      <td>2017-01-01</td>\n",
        "      <td>1</td>\n",
+       "      <td>1</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
-       "<p>20000 rows × 16 columns</p>\n",
+       "<p>20000 rows × 17 columns</p>\n",
        "</div>"
       ],
       "text/plain": [
@@ -3988,23 +4120,23 @@
        "16701      360.40     270.299988                  35667.0        2017-01-01   \n",
        "17469      742.54     667.400024                  33879.0        2017-01-01   \n",
        "\n",
-       "0     cohort_month  cohort_index  \n",
-       "14486   2017-01-01             3  \n",
-       "18970   2017-01-01             3  \n",
-       "16423   2017-01-01            12  \n",
-       "5157    2017-01-01             5  \n",
-       "13424   2017-01-01             2  \n",
-       "...            ...           ...  \n",
-       "2463    2017-01-01             4  \n",
-       "8416    2017-01-01             2  \n",
-       "8708    2017-01-01            10  \n",
-       "16701   2017-01-01             1  \n",
-       "17469   2017-01-01             1  \n",
+       "0     cohort_month  CohortIndex  cohort_index  \n",
+       "14486   2017-01-01            3             3  \n",
+       "18970   2017-01-01            3             3  \n",
+       "16423   2017-01-01           12            12  \n",
+       "5157    2017-01-01            5             5  \n",
+       "13424   2017-01-01            2             2  \n",
+       "...            ...          ...           ...  \n",
+       "2463    2017-01-01            4             4  \n",
+       "8416    2017-01-01            2             2  \n",
+       "8708    2017-01-01           10            10  \n",
+       "16701   2017-01-01            1             1  \n",
+       "17469   2017-01-01            1             1  \n",
        "\n",
-       "[20000 rows x 16 columns]"
+       "[20000 rows x 17 columns]"
       ]
      },
-     "execution_count": 51,
+     "execution_count": 215,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4013,7 +4145,8 @@
     "# Check and list out how many transactions each customer purchased.  \n",
     "\n",
     "transaction_df.sort_values('customer_id')\n",
-    "\n"
+    "\n",
+    "# sort_values 和 order by 的差别？"
    ]
   },
   {
@@ -4021,7 +4154,7 @@
    "id": "b4806ef0",
    "metadata": {},
    "source": [
-    "\n",
+    "# group() object 的意思？\n",
     "\n",
     "## Here, at first, we create a group() object with CohortMonth and CohortIndex and store it as a grouping.\n",
     "\n",
@@ -4038,7 +4171,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 52,
+   "execution_count": null,
+   "id": "a8aa309c",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 216,
    "id": "df0e336e",
    "metadata": {},
    "outputs": [
@@ -4112,7 +4253,7 @@
        "4   2017-01-01             5          502"
       ]
      },
-     "execution_count": 52,
+     "execution_count": 216,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4124,7 +4265,9 @@
     "cohort_data = transaction_df.groupby(['cohort_month', 'cohort_index']).nunique()['customer_id'].reset_index()\n",
     "\n",
     "# Printing top 5 rows of Dataframe\n",
-    "cohort_data.head()"
+    "cohort_data.head()\n",
+    "\n",
+    "#reset_index 在这里的作用？"
    ]
   },
   {
